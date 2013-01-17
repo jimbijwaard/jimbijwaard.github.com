@@ -1,0 +1,459 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #000;
+    margin: 10px 13px 10px 13px;
+}
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+@media screen and (min-width: 768px) {
+    body {
+        width: 748px;
+        margin:10px auto;
+    }
+}
+</style>
+<title>Object Oriented CSS at Sunday Afternoon</title>
+</head>
+<body>
+<h1>Object Oriented CSS at Sunday Afternoon</h1>
+
+<h2>Why Object oriented CSS?</h2>
+
+<p>Object Oriented CSS is an approach to writing CSS that’s fast, maintainable, and standards-based. OOCSS applies exisiting concepts of Object Oriented programming to CSS. This adds much needed predictability to CSS so that a team of developers can cooperatively design a website or webapp.</p>
+
+<h3>What defines a CSS Object?</h3>
+
+<p>&ldquo;Basically, a CSS “object” is a repeating visual pattern, which can be abstracted into an independent snippet of HTML, CSS, and possibly JavaScript. Once created, an object can then be reused throughout a site.&rdquo;</p>
+
+<p>By abstracting these components, a developer is able to reduce a lot of repetition from the CSS code, and make the CSS much more predictable and maintainable.</p>
+
+<p>For instance, the <a href="http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/">media</a> object describes a content block containing a fixed-size media element (e.g. image or video) along with other variable-size content (e.g. text). Another example is the module object, which describes a generic content block with a required body area and optional header and footer areas.</p>
+
+<p>The concept of OOCSS was first presented by Nicole Sullivan at Web Directions North in Denver and is widely used, for example in popular frameworks like <a href="http://bootstrap.github.com">Twitter Bootstrap</a>, and <a href="http://foundation.zurb.com">Zurb foundation</a>.</p>
+
+<h2>Main Principles of OOCSS</h2>
+
+<h3>Separate structure and skin</h3>
+
+<p>Separate structure and skin means to define repeating visual features (like background and border styles) as separate “skins” that you can mix-and-match with your various objects to achieve a large amount of visual variety without much code.</p>
+
+<p>Separating structure and skin can also mean using classes to name your objects and their components, rather than relying solely on the semantics of HTML. For example, the media object, as proposed by Nicole Sulivan, is named with class=&ldquo;media&rdquo;, and its components are named with class=&ldquo;img&rdquo; (for the image/video component) and class=&ldquo;bd&rdquo; (for the body/text component).</p>
+
+<p>By referencing these classes in your stylesheets (say, rather than directly styling the <img> element), your HTML can be flexible. For instance, if a new media element were to take off in the next few years (e.g. <code>&lt;svg&gt;</code>), it could be integrated into the HTML without having to touch the CSS.</p>
+
+<h3>Separate container and content</h3>
+
+<p>Essentially, this means “rarely use location-dependent styles”. An object should look the same no matter where you put it. So instead of styling a specific <code>&lt;h2&gt;</code> with <code>.myObject h2 {…}</code>, create and apply a class that describes the <code>&lt;h2&gt;</code> in question, like <code>&lt;h2 class="category"&gt;</code>.</p>
+
+<p>This gives you the assurance that: (1) all unclassed <code>&lt;h2&gt;</code>s will look the same; (2) all elements with the category class (called a mixin) will look the same; and 3) you won’t need to create an override style for the case when you actually do want <code>.myObject h2</code> to look like the normal <code>&lt;h2&gt;</code>.</p>
+
+<blockquote><p>An object should be open to extention, but closed to modification.</p></blockquote>
+
+<p>In many large-scale websites there are occations where a block can be reused, but needs to be slightly adapted. Often, developers choose to make a block context-specific by applying a different styling based on the parent item as shown in the example below.</p>
+
+<pre><code>.block {
+  background: #fff;
+  color: black;
+  padding:10px;
+}
+
+#right-sidebar .block {
+  padding: 20px;
+  width: 200px;
+  background: orange;
+  color:#000;
+}
+
+#right-sidebar .sub-content .block {
+  padding:10px;
+  background: transparent;
+  color:#fff;
+}
+</code></pre>
+
+<p>In small projects this often doesn&rsquo;t lead to any problems, however when a project becomes bigger this could lead to code-repetition and inconsistencies.</p>
+
+<p>This method of &lsquo;context-specific&rsquo; styling has two problems.
+1. In large teams, each developer should be able to depend on a consistent behavior when applying styling. When styling is context-specific this might lead to unexpected behavior.
+2. However the application of the <code>.block</code> class is not predictable. Because the styling is not predictable, developers might need to add additional styling to achieve the desired result.</p>
+
+<p>A better solution would be to define a <code>.block</code> module, and extend it for specific purposes.</p>
+
+<pre><code>.block {
+  padding:20px;
+  color: black;
+  width: 100%;
+}
+
+.block .block--constrained {
+  width: 200px;
+  padding: 10px;
+  margin:10px;
+}
+
+.block block--emphasis {
+  border: 1px solid black;
+  background: orange;
+}
+</code></pre>
+
+<p>In this example the block module can be reused for different content-containers. Next, the block can be constrained  in size by applying the extention <code>block--constrained</code> in other areas of the site. The emphasis extention can be used in situations where you would like to attract the attention of the user.</p>
+
+<pre><code>&lt;div id="main"&gt;
+    &lt;div class="block"&gt; … &lt;/div&gt;
+    &lt;div class="block block--emphasis"&gt; … &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="sidebar-right"&gt;
+    &lt;div class="block block--constrained"&gt; … &lt;/div&gt;
+    &lt;div class="sub-content"&gt;
+        &lt;div class="block block--constrained block--emphasis"&gt; … &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2>Seperation of responsibility between classes.</h2>
+
+<p>In object-oriented programming, the single responsibility principle states that:</p>
+
+<blockquote><p>every class should have a single responsibility, and that responsibility should be entirely encapsulated by the class. All its services should be narrowly aligned with that responsibility.</p></blockquote>
+
+<p>This <a href="http://csswizardry.com/2012/04/the-single-responsibility-principle-applied-to-css/">SPR</a> can also be applied in OOCSS. Take the following example:</p>
+
+<pre><code>&lt;a href=/product class=promo&gt;Buy now!&lt;/a&gt;
+
+.promo{
+    display:block;
+    padding:20px;
+    margin-bottom:20px;
+    background-color:#09f;
+    color:#fff;
+    text-shadow:0 0 1px rgba(0,0,0,0.25);
+    border-radius:4px;
+}
+</code></pre>
+
+<p>In this case, the class doesn;t follow the SPR. The class, which styles a promotional box 1). positions a box and sets margins and spacing, and 2). Defines specific colors to attract attention.</p>
+
+<p>By seperating the concern of this class in two seperate classes we get the following code:</p>
+
+<pre><code>&lt;a href=product class="box promo"&gt;Buy now!&lt;/a&gt;
+
+.box{
+    display:block;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.promo{
+    background-color:#09f;
+    color:#fff;
+    text-shadow:0 0 1px rgba(0,0,0,0.25);
+    border-radius:4px;
+}
+</code></pre>
+
+<p>The <code>.box</code> class can be reused in another context whithout direcly attacting attention like the promotional box intends to do. Also, by applying the <code>.promo</code> class we can attract attention to other inline elements.</p>
+
+<p>Keep in mind to apply this method responsibily. It&rsquo;s easy to take SRP to far, which means you end up with one class for about every css-property.</p>
+
+<p>We would be defeating our own purpose by defining classes for different font-sizes like so: <code>.font-size-14</code> and <code>.font-size-18</code>. As mentioned earlier in this article, a seperation between structure and skin is often a sensible solution.</p>
+
+<p>Applying this methodology has several benefits:</p>
+
+<ul>
+<li>Your CSS is a lot DRYer.</li>
+<li>You can make far-reaching changes to your designs by simply modifying a base abstraction only once.</li>
+<li>You can make safer changes because you know that when editing a class you are only ever altering one responsibility.</li>
+<li>You can combine responsibilities to make a variety of components from a lot of abstracted classes.</li>
+</ul>
+
+
+<p><strong>Zurb Foundation</strong> makes uses this method of seperation of responsibilites a lot in it&rsquo;s framework. For example the <code>.radius</code> and <code>.rounded</code> classes are globally applicable on block-elements to add the globally defined border-radius or fully round style.</p>
+
+<h2>OOCSS Styleguide</h2>
+
+<p>A styleguide is used to ensure all developers in a team use the same method for naming ID&rsquo;s and Classes. These guidelines enourage the use of exisiting, common and sensible patterns.</p>
+
+<p>These days most people write CSS with hyphens as word separators. But hyphens alone are usually not enough to distinguish between different types of classes.</p>
+
+<p>Expanding on the work of Nicolas Galagher, Philip Walton [2] illustrates the need for a naming convention. Consider the following exampel:</p>
+
+<pre><code>/* A component */
+.btn-group { }
+
+/* A component modifier (modifying .button) */
+.btn-primary { }
+
+/* A component sub-object (lives within .button) */
+.btn-icon { }
+
+/* Is this a component class or a layout class? */
+.header { }
+</code></pre>
+
+<p>A more logical, understandable and readable structure would be:</p>
+
+<pre><code>/* A component */
+.btn-group { }
+
+/* A component modifier (modifying .button) */
+.btn--primary { }
+
+/* A component sub-object (lives within .button) */
+.btn__icon { }
+
+/* A layout class */
+.l-header { }
+</code></pre>
+
+<p>Sub-objects are prefixed with the module name. Some might argue that an .icon sub-element can be safely styled by using .btn.icon without having to worry about the styles spilling over to any other elements styled with the same class, however, this doesn’t prevent the styling of classes with those same names from spilling into this component. Read more about the <a href="]http://csswizardry.com/2012/06/the-open-closed-principle-applied-to-css/">Open/Closed principle of CSS</a> on Harry Roberts Blog. Or take a look at this <a href="http://lanyrd.com/2012/sxsw-interactive/spmqc/">presentation</a> by Andy Hume.</p>
+
+<h4>Example of a Button module</h4>
+
+<p>The following piece of code shows a good example of defining a module. The code is a simplification of the excellent <a href="www.csswizardry.com/beautons">Beautons</a> module by Harry Roberts.</p>
+
+<pre><code>/* BASE BUTTON */
+
+.btn{
+    display:inline-block;
+    vertical-align:middle;
+    cursor:pointer;
+    color:#fff;
+    background-color:#999;
+    border-radius: 3px;
+    line-height: 3em;
+    padding-right: 1em;
+    padding-left: 1em;
+}
+
+.btn,
+.btn:hover{
+    text-decoration:none;
+}
+
+.btn__icon{
+    font-family: 'icon-font';
+    display:inline-block;
+    width:16px;
+    height:16px;
+}
+
+/* BUTTON SIZES */
+
+.btn--small{
+    padding-right:0.5em;
+    padding-left: 0.5em;
+    line-height:2;
+}
+
+.btn--large{
+    padding-right:1.5em;
+    padding-left: 1.5em;
+    line-height:4;
+}
+
+
+.btn--full{
+    width:100%;
+    padding-right:0;
+    padding-left: 0;
+    text-align:center;
+}
+
+/* BUTTON SHAPES */
+
+.btn--round{
+    border-radius:999px;
+}
+
+.btn--square{
+    border-radius:0;
+}
+</code></pre>
+
+<h2>Code Organization</h2>
+
+<p>Jonathan Snook offers a stucture for CSS organization in his book SMACSS, in which he presents his view on DRY and maintainable CSS. The structure he proposes is organized in 5 levels of specificity:</p>
+
+<ol>
+<li><strong>Base</strong> - Global Styles en resets</li>
+<li><strong>Layout</strong> - Positionering van de pagina-elementen (<code>.l-header</code>, <code>.l-sidebar</code>)</li>
+<li><strong>Modules</strong> - De verschillende modules welke worden gebruikt</li>
+<li><strong>State</strong> - Defines the appearance of the current state a module/component is in. These states should indicate a temporary styling based on a specific temporary ruleset. (<code>.is-active</code>, <code>.is-clicked</code>, <code>.is-invalid</code>). These are different from extentions in the sense that extentions differ based on context, not states.</li>
+<li><strong>Themes</strong> - Especially used in very large projects which need to be able to switch between different &lsquo;themes&rsquo; depending on for example the season or user-settings.</li>
+</ol>
+
+
+<p>This structure can also be applied to the organization of the files in a project.</p>
+
+<p>One specific css file (which is referenced in the index.html) imports  base.css, layout.css and modules.css. Modules.css in itself imports the seperate modules, which are defined in their own file for easy lookup and maintenance.</p>
+
+<pre><code>--css/
+ | --app.css
+ | --base.css
+ | --layout.css
+ | --modules.css
+ | --modules/
+   | --module-1.css
+   | --module-2.css
+   | --module-3.css
+   | --module-4.css
+</code></pre>
+
+<p>These files should be further optimized trough concatination and compression in order to reduce HTTP-requests and filesize. This can be done trough <a href="www.grunt.com">GruntJS</a> or the <a href="www.requirejs.com">r.js optimizer</a> of RequireJS. Otherwise a CSS-preprocessor like <a href="www.sass.com">Sass</a> can help with the optimization process, as well as add several other benefits.</p>
+
+<h2>Final Notes</h2>
+
+<p>The concepts described in this article build upon the excellent work of several other developers and authors:</p>
+
+<ul>
+<li>Nicole Sullivan (OOCSS, Stubbornella)</li>
+<li>Jonathan Snook (SMACSS, YAHOO, Shopify)</li>
+<li>Nicolas Gallagher (Normalize.css, )</li>
+<li>Harry Roberts (Inuitcss, CSSWizardry)</li>
+<li>Andy Hume (Microsoft, Clearleft)</li>
+</ul>
+
+
+<h3>SOURCES:</h3>
+
+<p>I highly recommend reading the following articles about OOCSS, CSS architecture, BEM-methodology (analogous to OOCSS)</p>
+
+<h4>OOCSS</h4>
+
+<ul>
+<li><a href="http://engineering.appfolio.com/2012/11/16/css-architecture/">Exhastive article on the merits of OOCSS and SASS</a></li>
+<li><a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture/">HTML Semantics and Front-End architecture</a></li>
+<li><a href="http://csswizardry.com/2012/04/the-single-responsibility-principle-applied-to-css/">Single Responsibility Principle applied to CSS</a></li>
+<li><a href="http://csswizardry.com/2011/09/the-nav-abstraction/">A Nav Abstraction example</a></li>
+<li><a href="https://github.com/stubbornella/oocss/wiki">Nicole Sullivan on OOCSS</a></li>
+<li><a href="http://lanyrd.com/2012/sxsw-interactive/spmqc/">CSS for grownups</a></li>
+</ul>
+
+
+<h4>CSS Styleguide</h4>
+
+<ul>
+<li><a href="https://github.com/necolas/idiomatic-css">Nicolas Gallagher on Idiomatic CSS</a></li>
+</ul>
+
+
+<h4>Block Element Module method</h4>
+
+<ul>
+<li><a href="http://bem.info/method/">BEM Method</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+@import "components/normalize-css/normalize.css";
+
+body{
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 12px; /* this sets a base font-size which is extended by using em-sizes in h1/h2 etc.*/
+  color:#292929;
+}
+
+h1,h2,h3{
+  margin:0;
+}
+
+h2{
+  font-size: 17px;
+  font-weight: normal;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+/* Layout
+-------------------------------------------------- */
+
+.f-r{
+  float: right;
+}
+
+/* Box
+-------------------------------------------------- */
+
+.box{
+  display: block;
+  margin: 2em;
+  padding: 2em;
+}
+
+
+/* Lists
+-------------------------------------------------- */
+
+/* Remove usual bullet styles from list */
+.list {
+  margin-bottom: 10px;
+  list-style: none;
+  background-color: #fff;
+}
+
+/* Pad each list item and add dividers */
+.list li {
+  position: relative;
+  padding: 1em; /* Given extra right padding to accomodate counts, chevrons or buttons */
+  font-size: 15px;
+}
+
+.list li > a{
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  position: relative;
+  display: block;
+  padding: inherit;
+  margin: -1em;
+  color:inherit;
+  text-decoration: none;
+}
+
+.list li > a:hover{
+  background-color: #d7e3f0;
+  border-top: 1px solid #afc7e1;
+  border-bottom: 1px solid #afc7e1;
+}
+
+/* List header and dividers
+-------------------------------------------------- */
+
+.list .list-header{
+  position: relative;
+  background-color: #ebebeb;
+}
+
+.list .list-divider {
+  position: relative;
+  font-weight: bold;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+  background-color: #f8f8f8;
+}
+
+
+
+/* BASE BUTTON */
+
+    .btn{
+        display:inline-block;
+        vertical-align:middle;
+        cursor:pointer;
+        color:#fff;
+        background-color:#999;
+        border-radius: 3px;
+        line-height: 3em;
+        padding-right: 1em;
+        padding-left: 1em;
+    }
+
+    .btn,
+    .btn:hover{
+        text-decoration:none;
+    }
+
+    /* BUTTON SIZES */
+
+    .btn--small{
+        padding-right:0.5em;
+        padding-left: 0.5em;
+        line-height:2;
+    }
+
+    .btn--large{
+        padding-right:1.5em;
+        padding-left: 1.5em;
+        line-height:4;
+    }
+
+
+    .btn--full{
+        width:100%;
+        padding-right:0;
+        padding-left: 0;
+        text-align:center;
+    }
+
+    /* BUTTON SHAPES */
+
+    .btn--round{
+        border-radius:999px;
+    }
+
+    .btn--square{
+        border-radius:0;
+    }
